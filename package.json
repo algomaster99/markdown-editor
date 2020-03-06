@@ -84,8 +84,8 @@
     "react-dom": "^16.11.0",
     "react-scripts": "^3.3.0",
     "semver": "6.1.1",
-    "slate": "^0.47.8",
-    "slate-react": "^0.22.9",
+    "slate": "^0.57.1",
+    "slate-react": "^0.57.1",
     "styled-components": "^4.4.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
@@ -101,18 +101,15 @@
     "not op_mini all"
   ],
   "dependencies": {
-    "@accordproject/markdown-html": "^0.10.0",
-    "@accordproject/markdown-slate": "^0.10.0",
+    "@accordproject/markdown-html": "^0.10.2-20200305210058",
+    "@accordproject/markdown-slate": "^0.10.2-20200305210058",
     "@babel/runtime": "^7.8.4",
     "css-loader": "^3.2.0",
-    "immutable": "^3.8.2",
     "is-hotkey": "^0.1.6",
     "prop-types": "^15.7.2",
-    "react-immutable-proptypes": "^2.1.0",
     "react-textarea-autosize": "^7.1.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.87.3",
-    "slate-plain-serializer": "^0.7.10",
     "style-loader": "^0.23.1"
   }
 }

@@ -21,8 +21,7 @@ import React, {
   from 'react';
 import { HtmlTransformer } from '@accordproject/markdown-html';
 import { SlateTransformer } from '@accordproject/markdown-slate';
-import { Editor, getEventTransfer } from 'slate-react';
-import { Value } from 'slate';
+import { ReactEditor, getEventTransfer } from 'slate-react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import isHotKey from 'is-hotkey';
@@ -434,7 +433,7 @@ const SlateAsInputEditor = React.forwardRef((props, ref) => {
         const slateTransformer = new SlateTransformer();
         // @ts-ignore
         const ciceroMark = htmlTransformer.toCiceroMark(transfer.html, 'json');
-        const { document } = Value.fromJSON(slateTransformer.fromCiceroMark(ciceroMark));
+        const { document } = slateTransformer.fromCiceroMark(ciceroMark);
         editor.insertFragment(document);
         return;
       }
@@ -499,11 +498,11 @@ const SlateAsInputEditor = React.forwardRef((props, ref) => {
     <div className="ap-markdown-editor">
       <ToolbarWrapper {...editorProps} id="slate-toolbar-wrapper-id" />
       <EditorWrapper {...editorProps} >
-        <Editor
+        <ReactEditor
           {...props}
           ref={editorRef}
           className="doc-inner"
-          value={Value.fromJSON(value)}
+          value={value}
           readOnly={props.readOnly}
           onChange={onChangeHandler}
           onCut={onCutHandler}
@@ -555,7 +554,7 @@ SlateAsInputEditor.propTypes = {
   }),
 
   /**
-   * A callback that receives the Slate Value object and
+   * A callback that receives the Slate JSON object and
    * the corresponding markdown text
    */
   onChange: PropTypes.func.isRequired,
@@ -587,23 +586,23 @@ SlateAsInputEditor.propTypes = {
  * The default property values for this component
  */
 SlateAsInputEditor.defaultProps = {
-  value: Value.fromJSON({
+  value: {
     object: 'value',
     document: {
       object: 'document',
       data: {},
-      nodes: [{
+      children: [{
         object: 'block',
         type: 'paragraph',
         data: {},
-        nodes: [{
+        children: [{
           object: 'text',
           text: 'Welcome! Edit this text to get started.',
           marks: []
         }],
       }]
     }
-  })
+  }
 };
 
 export default SlateAsInputEditor;
